@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100d16"><meta name="description" content="EduCode — Learn Algorithms. Build Your Logic."><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="manifest" href="manifest.json"><link rel="icon" type="image/png" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/icon-192.png"><title>EduCode | Learn. Build. Think.</title>
+<style>
+:root{--bg:#f6f3fa;--panel:#fff;--panel2:#eee8f5;--text:#21182d;--muted:#71687d;--purple:#7842bd;--purple2:#6334a2;--border:#ded4e9;--input:#faf8fc;--hero1:#eee5f8;--hero2:#dfc9f4;--heroText:#241532;--heroMuted:#59496a;--shadow:0 8px 28px #29143a0b;--success:#218653;--danger:#c43c55}
+body.dark{--bg:#100d16;--panel:#1b1624;--panel2:#282035;--text:#f5f0fa;--muted:#aaa0b8;--purple:#b78aef;--purple2:#7842bd;--border:#382c48;--input:#171220;--hero1:#21152f;--hero2:#392052;--heroText:#f5f0fa;--heroMuted:#ddd0ec;--shadow:none;--success:#65d49a;--danger:#e56b78}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;transition:.2s}button,input,textarea,select{font:inherit}button{cursor:pointer}
+.topbar{height:66px;display:flex;align-items:center;gap:15px;padding:0 18px;background:var(--panel);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}.menu{width:43px;height:43px;border:1px solid var(--border);border-radius:11px;background:var(--panel2);color:var(--text);font-size:22px}.brand{font-size:23px;font-weight:800}.brand span{color:var(--purple)}
+.wrap{max-width:1180px;margin:auto;padding:25px 18px}.page{display:none}.page.active{display:block}.hero{background:linear-gradient(125deg,var(--hero1),var(--hero2));color:var(--heroText);border:1px solid var(--border);border-radius:22px;padding:clamp(26px,5vw,45px);margin-bottom:28px}.hero h1{font-size:clamp(30px,5vw,46px);line-height:1.25}.hero h1 span{color:var(--purple)}.hero p{color:var(--heroMuted);line-height:1.9;max-width:720px}.eyebrow{color:var(--purple);font-weight:bold;letter-spacing:1.5px;font-size:12px}.primary,.secondary,.danger{border-radius:9px;padding:10px 15px;border:1px solid var(--border)}.primary{background:var(--purple2);color:white;border:0;font-weight:bold}.secondary{background:var(--panel2);color:var(--text)}.danger{background:transparent;color:var(--danger);border-color:var(--danger)}.hero .primary{margin-top:15px;background:var(--purple)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}.card,.panel,.lesson{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:19px;margin-bottom:14px}.card p,.muted,.page-head p{color:var(--muted);line-height:1.75}.card .emoji{font-size:27px}.card h3{margin:10px 0}.page-head{margin-bottom:22px}.page-head h1{margin-bottom:8px}.section-title{margin:28px 0 15px}
+.sidebar{position:fixed;z-index:22;top:0;bottom:0;right:0;width:285px;max-width:86vw;background:var(--panel);border-left:1px solid var(--border);padding:20px;transform:translateX(110%);transition:.25s;overflow:auto}.sidebar.open{transform:translateX(0)}.overlay{display:none;position:fixed;inset:0;background:#0009;z-index:21}.overlay.show{display:block}.sidehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.sideitem{display:flex;gap:12px;width:100%;padding:12px;margin:4px 0;border:0;border-radius:9px;background:transparent;color:var(--text);text-align:right}.sideitem:hover,.sideitem.sel{background:var(--panel2);color:var(--purple)}.navlabel{font-size:11px;color:var(--muted);margin:20px 8px 8px;letter-spacing:1px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.tab{padding:10px 14px;border-radius:9px;border:1px solid var(--border);background:var(--panel);color:var(--text)}.tab.active{background:var(--purple2);color:#fff}
+.lesson{cursor:pointer}.lesson:hover{border-color:var(--purple)}.lesson small{color:var(--muted)}.lesson h3{margin:8px 0}.lesson p{color:var(--muted);line-height:1.7}
+.detail h1{margin:7px 0 14px}.detail h2{font-size:19px;margin:24px 0 10px}.detail p,.detail li{line-height:1.9}.detail ul{padding-right:22px}
+.concept{background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:16px;margin:14px 0}.concept-title{font-weight:bold;color:var(--purple);margin-bottom:10px}.diagram{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:14px}.node{background:var(--panel);border:1px solid var(--purple);border-radius:9px;padding:12px;text-align:center;min-width:75px}.arrow{color:var(--purple);font-size:22px}.code{direction:ltr;text-align:left;white-space:pre-wrap;background:#15111d;color:#eee2ff;border-radius:10px;padding:15px;overflow:auto;font:14px/1.7 monospace}.video{display:inline-flex;align-items:center;gap:8px;background:#fff0f0;color:#b32635;border:1px solid #efc3c7;padding:11px 14px;border-radius:9px;text-decoration:none;font-weight:bold}.dark .video{background:#351b25;color:#ffb4be;border-color:#63303e}
+.field{margin:13px 0}.field label{display:block;margin-bottom:7px;font-weight:bold}.field input,.field textarea{width:100%;padding:12px;border-radius:9px;border:1px solid var(--border);background:var(--input);color:var(--text)}.editor{width:100%;min-height:280px;background:#15111d;color:#eee2ff;direction:ltr;text-align:left;padding:15px;border-radius:10px;border:1px solid var(--border);font:14px/1.7 monospace}.file{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;background:var(--panel2);padding:12px;border-radius:9px;margin:9px 0}.track{height:9px;background:var(--panel2);border-radius:10px;overflow:hidden;margin:12px 0}.fill{height:100%;background:var(--purple);width:0}
+.setting{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.avatar{width:65px;height:65px;border-radius:50%;display:grid;place-items:center;background:var(--panel2);color:var(--purple);font-size:27px}
+footer{text-align:center;color:var(--muted);border-top:1px solid var(--border);padding:25px;margin-top:35px}a{color:var(--purple)}
+@media(max-width:600px){.wrap{padding:18px 13px}.topbar{padding:0 13px}.hero{padding:25px 19px}}
+</style>
+</head>
+<body>
+<header class="topbar"><button class="menu" onclick="toggleMenu()">☰</button><div class="brand">Edu<span>Code</span></div></header>
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<aside class="sidebar" id="sidebar">
+ <div class="sidehead"><div class="brand">Edu<span>Code</span></div><button class="secondary" onclick="closeMenu()">✕</button></div>
+ <div class="navlabel" data-en="LEARN" data-ar="التعلم">التعلم</div>
+ <button class="sideitem sel" data-page="home" onclick="go('home')">⌂ <span data-en="Home" data-ar="الرئيسية">الرئيسية</span></button>
+ <button class="sideitem" data-page="courses" onclick="go('courses')">▤ <span data-en="Courses" data-ar="المقررات والدروس">المقررات والدروس</span></button>
+ <button class="sideitem" data-page="lab" onclick="go('lab')">⌨ <span data-en="C Code Lab" data-ar="مختبر لغة C">مختبر لغة C</span></button>
+ <div class="navlabel" data-en="MY SPACE" data-ar="مساحتي">مساحتي</div>
+ <button class="sideitem" data-page="files" onclick="go('files')">▣ <span data-en="My Files" data-ar="ملفاتي">ملفاتي</span></button>
+ <button class="sideitem" data-page="progress" onclick="go('progress')">◷ <span data-en="My Progress" data-ar="تقدمي">تقدمي</span></button>
+ <button class="sideitem" data-page="profile" onclick="go('profile')">♙ <span data-en="Profile" data-ar="الملف الشخصي">الملف الشخصي</span></button>
+ <div class="navlabel" data-en="PLATFORM" data-ar="المنصة">المنصة</div>
+ <button class="sideitem" data-page="settings" onclick="go('settings')">⚙ <span data-en="Settings" data-ar="الإعدادات">الإعدادات</span></button>
+ <button class="sideitem" data-page="about" onclick="go('about')">ⓘ <span data-en="About" data-ar="حول المنصة">حول المنصة</span></button>
+</aside>
+<main class="wrap">
+<section class="page active" id="home">
+ <div class="hero"><div class="eyebrow">EDUCODE · STUDY PLATFORM</div><h1 data-en="Learn Algorithms.<br><span>Build Your Logic.</span>" data-ar="تعلم الخوارزميات.<br><span>ابنِ منطقك البرمجي.</span>">تعلم الخوارزميات.<br><span>ابنِ منطقك البرمجي.</span></h1><p data-en="A structured learning platform for university students and programming beginners. Learn the concept, see the visual example, solve exercises and translate algorithms into C." data-ar="منصة تعليمية منظمة لطلبة الجامعة والمبتدئين. افهم المفهوم، شاهد المثال المرئي، حل التمارين، ثم حوّل الخوارزميات إلى برامج بلغة C.">منصة تعليمية منظمة لطلبة الجامعة والمبتدئين. افهم المفهوم، شاهد المثال المرئي، حل التمارين، ثم حوّل الخوارزميات إلى برامج بلغة C.</p><button class="primary" onclick="go('courses')" data-en="Explore curriculum →" data-ar="اكتشف المقررات ←">اكتشف المقررات ←</button></div>
+ <h2 class="section-title" data-en="Your learning tracks" data-ar="المسارات التعليمية">المسارات التعليمية</h2>
+ <div class="grid">
+  <div class="card"><div class="emoji">🧠</div><h3>Algorithmique & Data Structures</h3><p data-en="Six chapters based on your university syllabus." data-ar="ستة فصول وفق برنامجك الجامعي.">ستة فصول وفق برنامجك الجامعي.</p><button class="secondary" onclick="openTrack('algo')" data-en="Open track" data-ar="افتح المسار">افتح المسار</button></div>
+  <div class="card"><div class="emoji">💻</div><h3>C Programming</h3><p data-en="From the first program to arrays, functions and structures." data-ar="من أول برنامج إلى المصفوفات والدوال والبنى.">من أول برنامج إلى المصفوفات والدوال والبنى.</p><button class="secondary" onclick="openTrack('c')" data-en="Open track" data-ar="افتح المسار">افتح المسار</button></div>
+  <div class="card"><div class="emoji">🖥️</div><h3>Structure Machine</h3><p data-en="Computer components, number systems, codes and Boolean algebra." data-ar="مكونات الحاسوب وأنظمة الترقيم والرموز والجبر البولياني.">مكونات الحاسوب وأنظمة الترقيم والرموز والجبر البولياني.</p><button class="secondary" onclick="openTrack('machine')" data-en="Open track" data-ar="افتح المسار">افتح المسار</button></div>
+ </div>
+ <h2 class="section-title" data-en="Learning progress" data-ar="تقدم التعلم">تقدم التعلم</h2><div class="panel"><b id="homeProgress">0 lessons completed</b><div class="track"><div class="fill" id="homeFill"></div></div><button class="secondary" onclick="go('progress')" data-en="View progress" data-ar="عرض التقدم">عرض التقدم</button></div>
+</section>
+
+<section class="page" id="courses"><div class="page-head"><h1 data-en="Curriculum" data-ar="المقررات الدراسية">المقررات الدراسية</h1><p data-en="Choose a subject, then open any lesson." data-ar="اختاري المقياس ثم افتحي الدرس الذي تريدينه.">اختاري المقياس ثم افتحي الدرس الذي تريدينه.</p></div><div class="tabs"><button class="tab active" id="tab-algo" onclick="openTrack('algo')">Algorithmique</button><button class="tab" id="tab-c" onclick="openTrack('c')">C Programming</button><button class="tab" id="tab-machine" onclick="openTrack('machine')">Structure Machine</button></div><div id="trackDescription" class="panel"></div><div id="lessonList"></div></section>
+
+<section class="page" id="detail"><button class="secondary" onclick="go('courses')" data-en="← Back to curriculum" data-ar="→ العودة إلى المقررات">→ العودة إلى المقررات</button><article class="panel detail" id="lessonDetail" style="margin-top:14px"></article></section>
+
+<section class="page" id="lab"><div class="page-head"><h1 data-en="C Code Lab" data-ar="مختبر لغة C">مختبر لغة C</h1><p data-en="Write, edit and save C programs. This prototype is a code editor, not a compiler." data-ar="اكتبي برامج C وعدّليها واحفظيها. هذه النسخة محرر شيفرة وليست مترجمًا أو منفذًا للبرامج.">اكتبي برامج C وعدّليها واحفظيها. هذه النسخة محرر شيفرة وليست مترجمًا أو منفذًا للبرامج.</p></div><div class="panel"><div class="field"><label data-en="File name" data-ar="اسم الملف">اسم الملف</label><input id="labName" placeholder="exercise.c"></div><textarea class="editor" id="editor" spellcheck="false">#include &lt;stdio.h&gt;
+
+int main(void) {
+    int a, b, sum;
+
+    printf("Enter two integers: ");
+    scanf("%d %d", &a, &b);
+
+    sum = a + b;
+
+    printf("Sum = %d\\n", sum);
+    return 0;
+}</textarea><br><br><button class="primary" onclick="saveCode()" data-en="Save to My Files" data-ar="حفظ في ملفاتي">حفظ في ملفاتي</button><button class="secondary" onclick="document.getElementById('editor').value=''" data-en="Clear" data-ar="مسح">مسح</button></div></section>
+
+<section class="page" id="files"><div class="page-head"><h1 data-en="My Files" data-ar="ملفاتي">ملفاتي</h1><p data-en="Your saved code files on this device." data-ar="ملفاتك البرمجية المحفوظة على هذا الجهاز.">ملفاتك البرمجية المحفوظة على هذا الجهاز.</p></div><div class="panel"><div class="field"><label data-en="New file name" data-ar="اسم ملف جديد">اسم ملف جديد</label><input id="newFile" placeholder="program.c"></div><button class="primary" onclick="newFile()" data-en="Create file" data-ar="إنشاء ملف">إنشاء ملف</button></div><div class="panel"><div id="fileList"></div></div></section>
+<section class="page" id="progress"><div class="page-head"><h1 data-en="My Progress" data-ar="تقدمي">تقدمي</h1></div><div class="panel"><h2 id="progressCount">0</h2><div class="track"><div class="fill" id="progressFill"></div></div><div id="progressList"></div></div></section>
+<section class="page" id="profile"><div class="page-head"><h1 data-en="Profile" data-ar="الملف الشخصي">الملف الشخصي</h1></div><div class="panel"><div class="avatar">♙</div><div class="field"><label data-en="Name" data-ar="الاسم">الاسم</label><input id="pName"></div><div class="field"><label data-en="Email" data-ar="البريد الإلكتروني">البريد الإلكتروني</label><input id="pEmail"></div><div class="field"><label data-en="About me" data-ar="نبذة عني">نبذة عني</label><textarea id="pBio"></textarea></div><button class="primary" onclick="saveProfile()" data-en="Save profile" data-ar="حفظ">حفظ</button></div></section>
+<section class="page" id="settings"><div class="page-head"><h1 data-en="Settings" data-ar="الإعدادات">الإعدادات</h1></div><div class="panel setting"><div><h3 data-en="Language" data-ar="اللغة">اللغة</h3><p class="muted" data-en="Choose Arabic or English." data-ar="اختاري العربية أو الإنجليزية.">اختاري العربية أو الإنجليزية.</p></div><div><button class="secondary" onclick="setLang('ar')">العربية</button> <button class="secondary" onclick="setLang('en')">English</button></div></div><div class="panel setting"><div><h3 data-en="Appearance" data-ar="المظهر">المظهر</h3><p class="muted" data-en="Light and dark themes." data-ar="الوضع النهاري والليلي.">الوضع النهاري والليلي.</p></div><button class="secondary" id="themeBtn" onclick="toggleTheme()">الوضع الليلي</button></div><div class="panel"><h3 data-en="Storage" data-ar="التخزين">التخزين</h3><p class="muted" data-en="Lessons progress and files are saved locally in this browser." data-ar="يُحفظ تقدم الدروس والملفات محليًا في هذا المتصفح.">يُحفظ تقدم الدروس والملفات محليًا في هذا المتصفح.</p></div></section>
+<section class="page" id="about"><div class="page-head"><h1>About EduCode</h1></div><div class="panel"><h2>EduCode</h2><p class="muted">Learn Algorithms. Build Your Logic.</p><p>Meriem Touaitia · Computer Science & Mathematics</p><p>Université Larbi Tébessi · Tebessa, Algeria</p><p><a href="https://github.com/mariemtouaitia-cmd" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/mairam-aitiauot-8918ab437" target="_blank">LinkedIn</a></p></div></section>
+<footer><div class="brand">Edu<span>Code</span></div><p>Learn Algorithms. Build Your Logic.</p><small>Educational prototype · 2026</small></footer>
+</main>
+
+<script>
+const YT="https://www.youtube.com/results?search_query=";
+const courses={
+algo:{title:"Algorithmique et Structures de Données 1",desc:"البرنامج الجامعي: Introduction, Simple Sequential Algorithm, Conditional Structures, Repetitive Structures, Arrays and Strings, User-Defined Types.",teacher:"UltrasDzCoder / Khan Academy",lessons:[
+["Chapter I — Introduction","مقدمة في الخوارزميات","مفهوم الخوارزمية، خصائصها، مراحل حل المشكلة، تحليل المشكلة، المدخلات والمخرجات والمعالجة، الفرق بين Algorithm وProgram، لمحة عن لغات البرمجة وبنية الحاسوب.","مثال: تحضير كوب شاي كسلسلة تعليمات مرتبة: ابدأ ← سخّن الماء ← ضع الشاي ← أضف الماء ← انتظر ← انتهِ.","Problem → Analysis → Algorithm → Coding → Testing","https://www.youtube.com/watch?v=s2dwJnjcH1E","الخوارزميات للمبتدئين UltrasDzCoder"],
+["Chapter II — Simple Sequential Structure","البنية التسلسلية البسيطة","تركيب الخوارزمية، المتغيرات والثوابت، أنواع البيانات Integer وReal وCharacter وBoolean، التصريح بالمتغيرات، القراءة Read، الكتابة Write، الإسناد Assignment، المخططات الانسيابية، وترجمة الخوارزمية إلى C.","نقرأ A وB، نحسب S=A+B، ثم نعرض S. في C نستعمل scanf للقراءة وprintf للعرض.","Start → Read A,B → S=A+B → Display S → End","https://www.youtube.com/results?search_query=algorithm+sequential+structure+variables+input+output+UltrasDzCoder","شرح البنية التسلسلية والمتغيرات"],
+["Chapter III — Conditional Structures","التراكيب الشرطية","If، If/Else، Else If، الشروط المتداخلة، Switch/Case، معاملات المقارنة، AND وOR وNOT، وجداول الحقيقة الأساسية.","تحديد هل العدد زوجي: إذا كان N % 2 == 0 نعرض Even وإلا Odd. انتبهي: = للإسناد و== للمقارنة في C.","Condition? → True: action A | False: action B","https://www.youtube.com/results?search_query=conditional+structures+if+else+algorithm+C+programming+شرح","شرح If Else والخوارزميات"],
+["Chapter IV — Repetitive Structures","التراكيب التكرارية","For، While، Do While، بداية ونهاية الحلقة، شرط الاستمرار، عداد الحلقة، المجاميع والعدادات، الحلقات المتداخلة، وتتبع التنفيذ Trace Table.","حساب مجموع الأعداد من 1 إلى N: نبدأ Sum=0، ثم نكرر Sum=Sum+i لكل i من 1 إلى N.","i=1 → Test condition → Body → Update i ↺","https://www.youtube.com/results?search_query=loops+for+while+do+while+algorithm+C+programming+شرح","شرح الحلقات التكرارية"],
+["Chapter V — Arrays and Strings","المصفوفات والسلاسل المحرفية","المصفوفة أحادية البعد، الفهرسة Index، التصريح والتهيئة، القراءة والطباعة، البحث عن عنصر، أكبر وأصغر قيمة، المصفوفات ثنائية البعد والمصفوفات Matrix، السلاسل Strings.","لدينا T=[4,7,2]. الفهارس تبدأ غالبًا من 0 في C: T[0]=4 وT[1]=7 وT[2]=2.","Index: 0 | 1 | 2\\nValue: 4 | 7 | 2","https://www.youtube.com/results?search_query=arrays+strings+C+programming+شرح+المصفوفات","شرح Arrays and Strings"],
+["Chapter VI — User-Defined Types","الأنواع المعرّفة من طرف المستخدم","تعريف أنواع جديدة، struct، enum، union، typedef، الوصول إلى حقول البنية، والفرق بين تخزين struct وunion.","Student يمكن أن يجمع name وage وaverage في نوع واحد بدل متغيرات متفرقة.","Student → { name, age, average }","https://www.youtube.com/results?search_query=C+struct+enum+union+typedef+شرح+عربي","شرح Struct Enum Union Typedef"]
+]},
+c:{title:"C Programming — Practical Track",desc:"مسار تطبيقي موازٍ لمقياس الخوارزميات: نكتب كل فكرة بصيغة C، ونفهم الإدخال والإخراج والأنواع والتحكم والحلقات والمصفوفات والدوال.",teacher:"Eng Bilal Adil · Gate Smashers",lessons:[
+["C 01 — Getting Started","التعرف على لغة C وأول برنامج","ما لغة C؟ كيف يعمل البرنامج؟ دور compiler، شكل البرنامج، main، الأقواس، الفاصلة المنقوطة، والتعليقات. بنية أساسية: #include <stdio.h> ثم int main(void) ثم return 0.","أول برنامج يطبع Hello World. لاحظي أن printf تعرض النص على الشاشة.","Source code → Compiler → Executable program","https://www.youtube.com/watch?v=hzD4NXB9w6Y","كورس C للمبتدئين — Eng Bilal Adil"],
+["C 02 — Variables and Data Types","المتغيرات وأنواع البيانات","int للأعداد الصحيحة، float وdouble للأعداد العشرية، char للمحارف، الثوابت const، قواعد تسمية المتغيرات، والتحويل بين الأنواع.","int age=18; double price=12.5; char grade='A';. اختاري النوع حسب طبيعة القيمة.","Variable name → Memory box → Stored value","https://www.youtube.com/results?search_query=Eng+Bilal+Adil+C+variables+data+types","C Variables and Data Types"],
+["C 03 — Input and Output","الإدخال والإخراج","printf، scanf، محددات التنسيق %d و%f و%lf و%c و%s، استعمال & مع scanf للمتغيرات، ومحرف السطر الجديد \\n.","scanf(\"%d\", &n) يقرأ عددًا صحيحًا، وprintf(\"%d\", n) يعرضه. %d مكان مخصص لعرض قيمة int.","Keyboard → scanf → Variable → printf → Screen","https://www.youtube.com/results?search_query=C+programming+printf+scanf+format+specifiers+Arabic","شرح printf و scanf"],
+["C 04 — Operators and Expressions","المعاملات والتعابير","المعاملات الحسابية + - * / %، معاملات المقارنة، المنطقية && || !، الإسناد، الزيادة والنقصان، أولوية العمليات والقسمة الصحيحة.","إذا كان a=7 وb=2 فإن a/b يساوي 3 عند استعمال int، أما 7.0/2.0 فيعطي 3.5. والباقي 7%2 يساوي 1.","Operands → Operator → Result","https://www.youtube.com/results?search_query=C+programming+operators+precedence+modulus+Arabic","شرح Operators و Modulo"],
+["C 05 — Conditions","الشروط في C","if، else، else if، switch، المقارنة بين = و==، تركيب شروط متعددة، والأخطاء الشائعة في الأقواس والفواصل المنقوطة.","if (n % 2 == 0) printf(\"Even\"); else printf(\"Odd\");","Input → Condition → Branch A / Branch B","https://www.youtube.com/results?search_query=C+programming+if+else+switch+Arabic+شرح","شرح الشروط في C"],
+["C 06 — Loops","الحلقات في C","for، while، do while، عداد الحلقة، التراكم Sum، العد Count، break وcontinue، والحلقات المتداخلة.","for (int i=1; i<=5; i++) printf(\"%d\\\\n\", i); يطبع الأعداد من 1 إلى 5.","Initialize → Test → Body → Update ↺","https://www.youtube.com/results?search_query=C+programming+for+while+do+while+loops+Arabic","شرح Loops في C"],
+["C 07 — Arrays and Strings","المصفوفات والسلاسل في C","تعريف المصفوفات وتهيئتها، الوصول بالع index، المرور على العناصر بحلقة، البحث والمجموع، المصفوفات ثنائية الأبعاد، char arrays و\\0 ودوال السلاسل الأساسية.","int a[3]={4,7,2};. العنصر الأول a[0] وليس a[1]. اجمعي العناصر باستعمال for.","Array indexes: 0 | 1 | 2","https://www.youtube.com/results?search_query=C+programming+arrays+strings+Arabic","شرح Arrays and Strings"],
+["C 08 — Functions and User-Defined Types","الدوال والبنى والأنواع المخصصة","تعريف الدالة واستدعاؤها، parameters وreturn، النطاق Scope، prototypes، struct، enum، union، typedef، ومقدمة عن المؤشرات عند الحاجة في المقرر.","int square(int x){ return x*x; } ثم استدعاء square(4) يعيد 16. struct يجمع بيانات الطالب.","Function input → Processing → Return value","https://www.youtube.com/results?search_query=C+programming+functions+struct+typedef+Arabic","شرح Functions وStruct"]
+]},
+machine:{title:"Structure Machine",desc:"محاور المقياس: General Introduction, Number Systems, Information Representation / Binary Codes, Binary Boolean Algebra.",teacher:"Neso Academy · Gate Smashers",lessons:[
+["Chapter I — General Introduction","مقدمة عامة وبنية الحاسوب","ما الحاسوب؟ Hardware وSoftware، CPU، Control Unit، ALU، Registers، RAM، ROM، SSD/HDD، وحدات الإدخال والإخراج، دورة تنفيذ التعليمة، والفرق بين الذاكرة والتخزين.","تسلسل مبسط: Input → CPU processes data using memory → Output. الـ SSD يخزن البيانات طويلًا، أما RAM فتحتفظ مؤقتًا بما يعمل الآن.","<diagram>","https://www.youtube.com/results?search_query=Neso+Academy+computer+organization+CPU+RAM+ALU+basics","Computer Organization Basics"],
+["Chapter II — Number Systems","أنظمة الترقيم","النظام العشري Decimal، الثنائي Binary، الثماني Octal، والسادس عشري Hexadecimal، القيمة المكانية، التحويل بين القواعد، القسمة المتكررة، التحويل المباشر Binary↔Octal/Hex، العمليات الثنائية والجمع والطرح والضرب والقسمة والكسور الثنائية.","(13)₁₀ = (1101)₂ لأن 8+4+1=13. والتحويل من الثنائي إلى العشري يعتمد على قوى العدد 2.","Decimal 13 ↔ Binary 1101 ↔ Hex D","https://www.youtube.com/results?search_query=Neso+Academy+number+system+conversion+binary+octal+hexadecimal","Number Systems — Neso Academy"],
+["Chapter III — Information Representation and Binary Codes","تمثيل المعلومات والرموز الثنائية","Gray Code والتحويل Binary↔Gray، BCD والحساب به، Excess-3، ASCII وEBCDIC وUnicode، الأعداد السالبة: Sign-Magnitude وOne's Complement وTwo's Complement، Fixed/Floating Point، IEEE 754 single وdouble.","Gray للعدد الثنائي 1011: ننسخ أول بت، ثم XOR بين كل بتين متجاورين من الثنائي. BCD يمثل كل رقم عشري بأربع بتات.","Binary bits → Encoding scheme → Represented information","https://www.youtube.com/results?search_query=Gate+Smashers+Gray+code+BCD+ASCII+IEEE+754","Gray Code, BCD and IEEE 754"],
+["Chapter IV — Binary Boolean Algebra","الجبر البولياني والمنطق الرقمي","القيمتان 0 و1، العمليات AND وOR وNOT وXOR، جداول الحقيقة، قوانين Boolean، De Morgan، البوابات المنطقية، وتبسيط التعابير المنطقية.","A AND B تساوي 1 فقط عندما A=1 وB=1. أما OR فتساوي 1 إذا كان أحد المدخلين 1 على الأقل.","A,B → Logic Gate → Output","https://www.youtube.com/results?search_query=Neso+Academy+Boolean+algebra+logic+gates+truth+tables","Boolean Algebra and Logic Gates"]
+]}
+};
+let lang=localStorage.getItem("eduLang")||"ar",theme=localStorage.getItem("eduTheme")||"light",track="algo",current=null;
+let done=JSON.parse(localStorage.getItem("eduDone")||"[]"),files=JSON.parse(localStorage.getItem("eduFiles")||"[]");
+function toggleMenu(){sidebar.classList.toggle("open");overlay.classList.toggle("show")}function closeMenu(){sidebar.classList.remove("open");overlay.classList.remove("show")}
+function go(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".sideitem").forEach(x=>x.classList.toggle("sel",x.dataset.page===id));closeMenu();if(id==="files")renderFiles();if(id==="progress")renderProgress();if(id==="profile")loadProfile();window.scrollTo(0,0)}
+function openTrack(t){track=t;go("courses");document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.getElementById("tab-"+t).classList.add("active");const c=courses[t];document.getElementById("trackDescription").innerHTML="<h3>"+c.title+"</h3><p>"+c.desc+"</p><p class='muted'>مصادر الفيديو المقترحة: "+c.teacher+"</p>";document.getElementById("lessonList").innerHTML=c.lessons.map((l,i)=>`<div class="lesson" onclick="openLesson('${t}',${i})"><small>${t.toUpperCase()} · ${l[0]}</small><h3>${l[1]}</h3><p>${l[2].slice(0,150)}...</p><span class="muted">${done.includes(t+"-"+i)?"✓ مكتمل":"افتح الدرس ←"}</span></div>`).join("")}
+function openLesson(t,i){track=t;current=i;const l=courses[t].lessons[i];let diagram=l[4];if(diagram==="<diagram>")diagram="Input → CPU / ALU ↔ RAM → Output";const cCode= t==="algo"?algoCode(i):t==="c"?cCodeExample(i):"";document.getElementById("lessonDetail").innerHTML=`<div class="eyebrow">${courses[t].title} · ${l[0]}</div><h1>${l[1]}</h1><h2>1. الشرح والمفاهيم الأساسية</h2><p>${l[2]}</p><h2>2. التمثيل البصري</h2><div class="concept"><div class="diagram">${diagram.split("→").map((x,j)=>`${j?'<span class="arrow">→</span>':''}<div class="node">${x.trim()}</div>`).join("")}</div></div><h2>3. مثال تطبيقي</h2><div class="concept"><div class="concept-title">Worked example</div><p>${l[3]}</p></div>${cCode?`<h2>4. تطبيق بلغة C</h2><pre class="code">${esc(cCode)}</pre>`:""}<h2>${cCode?"5":"4"}. فيديو الشرح</h2><p>مصدر مقترح: ${l[6]}</p><p><a class="video" href="${l[5]}" target="_blank" rel="noopener">▶ شاهد الشرح على YouTube</a></p><h2>ملاحظة دراسية</h2><p>شاهدي الشرح، اكتبي التعريفات والمصطلحات، ثم أعيدي حل المثال دون النظر إلى الحل. أضيفي أسئلة الأستاذ والتمارين الصفية إلى ملاحظاتك.</p><button class="primary" onclick="markDone()" style="margin-top:18px">${done.includes(t+"-"+i)?"✓ تم إكمال الدرس":"تحديد الدرس كمكتمل"}</button>`;go("detail")}
+function algoCode(i){return [
+`/* Algorithm idea: Read two values, then display their sum */
+#include <stdio.h>
+int main(void) {
+    int a, b, sum;
+    scanf("%d %d", &a, &b);
+    sum = a + b;
+    printf("Sum = %d\\n", sum);
+    return 0;
+}`,
+`#include <stdio.h>
+int main(void) {
+    int age;
+    float average;
+    printf("Enter age and average: ");
+    scanf("%d %f", &age, &average);
+    printf("Age = %d, Average = %.2f\\n", age, average);
+    return 0;
+}`,
+`#include <stdio.h>
+int main(void) {
+    int n;
+    scanf("%d", &n);
+    if (n % 2 == 0)
+        printf("Even\\n");
+    else
+        printf("Odd\\n");
+    return 0;
+}`,
+`#include <stdio.h>
+int main(void) {
+    int n, i, sum = 0;
+    scanf("%d", &n);
+    for (i = 1; i <= n; i++)
+        sum += i;
+    printf("Sum = %d\\n", sum);
+    return 0;
+}`,
+`#include <stdio.h>
+int main(void) {
+    int a[3] = {4, 7, 2};
+    int i, sum = 0;
+    for (i = 0; i < 3; i++) sum += a[i];
+    printf("Sum = %d\\n", sum);
+    return 0;
+}`,
+`#include <stdio.h>
+struct Student { int age; float average; };
+int main(void) {
+    struct Student s = {18, 15.5};
+    printf("%d %.1f\\n", s.age, s.average);
+    return 0;
+}`
+][i]}
+function cCodeExample(i){return [
+`#include <stdio.h>
+int main(void) {
+    printf("Hello, C!\\n");
+    return 0;
+}`,
+`int age = 18;
+float mark = 15.5f;
+char grade = 'A';`,
+`int n;
+scanf("%d", &n);
+printf("You entered %d\\n", n);`,
+`int a = 7, b = 2;
+printf("%d\\n", a / b); // 3
+printf("%d\\n", a % b); // 1`,
+`if (n >= 10) {
+    printf("At least 10");
+} else {
+    printf("Less than 10");
+}`,
+`int i;
+for (i = 1; i <= 5; i++) {
+    printf("%d\\n", i);
+}`,
+`int a[3] = {4, 7, 2};
+printf("%d", a[0]); // 4`,
+`int square(int x) {
+    return x * x;
+}`
+][i]}
+function markDone(){let k=track+"-"+current;if(!done.includes(k))done.push(k);localStorage.setItem("eduDone",JSON.stringify(done));openTrack(track);renderProgress();openLesson(track,current)}
+function setLang(v){lang=v;localStorage.setItem("eduLang",v);applyLang()}
+function applyLang(){document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";document.querySelectorAll("[data-ar][data-en]").forEach(x=>x.innerHTML=x.dataset[lang]);document.getElementById("themeBtn").textContent=lang==="ar"?(theme==="dark"?"☀ الوضع النهاري":"☾ الوضع الليلي"):(theme==="dark"?"☀ Light mode":"☾ Dark mode");}
+function toggleTheme(){theme=theme==="dark"?"light":"dark";localStorage.setItem("eduTheme",theme);document.body.classList.toggle("dark",theme==="dark");applyLang()}
+function renderProgress(){let total=Object.values(courses).reduce((a,c)=>a+c.lessons.length,0),p=Math.round(done.length/total*100);document.getElementById("progressCount").textContent=`${done.length} / ${total} درس (${p}%)`;document.getElementById("progressFill").style.width=p+"%";document.getElementById("homeFill").style.width=p+"%";document.getElementById("homeProgress").textContent=`${done.length} / ${total} درس مكتمل`;document.getElementById("progressList").innerHTML=Object.entries(courses).map(([k,c])=>`<p><b>${c.title}</b>: ${c.lessons.filter((l,i)=>done.includes(k+"-"+i)).length}/${c.lessons.length}</p>`).join("")}
+function saveCode(){let name=document.getElementById("labName").value.trim();if(!name){alert("اكتبي اسم الملف أولًا");return}let content=document.getElementById("editor").value,old=files.find(f=>f.name===name);if(old)old.content=content;else files.push({id:Date.now(),name,content});localStorage.setItem("eduFiles",JSON.stringify(files));alert("تم حفظ الملف");}
+function newFile(){let name=document.getElementById("newFile").value.trim();if(!name)return alert("أدخلي اسم الملف");if(files.some(f=>f.name===name))return alert("اسم الملف موجود");files.push({id:Date.now(),name,content:""});localStorage.setItem("eduFiles",JSON.stringify(files));document.getElementById("newFile").value="";renderFiles()}
+function renderFiles(){document.getElementById("fileList").innerHTML=files.length?files.map(f=>`<div class="file"><b>📄 ${esc(f.name)}</b><span><button class="secondary" onclick="editFile(${f.id})">فتح</button> <button class="danger" onclick="delFile(${f.id})">حذف</button></span></div>`).join(""):"<p class='muted'>لا توجد ملفات محفوظة حتى الآن.</p>"}
+function editFile(id){let f=files.find(x=>x.id===id);if(!f)return;document.getElementById("labName").value=f.name;document.getElementById("editor").value=f.content;go("lab")}
+function delFile(id){files=files.filter(f=>f.id!==id);localStorage.setItem("eduFiles",JSON.stringify(files));renderFiles()}
+function saveProfile(){localStorage.setItem("eduProfile",JSON.stringify({name:pName.value,email:pEmail.value,bio:pBio.value}));alert("تم الحفظ")}
+function loadProfile(){let p=JSON.parse(localStorage.getItem("eduProfile")||"{}");pName.value=p.name||"";pEmail.value=p.email||"";pBio.value=p.bio||""}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+document.body.classList.toggle("dark",theme==="dark");applyLang();openTrack("algo");renderProgress();renderFiles();loadProfile();
+if ('serviceWorker' in navigator) { window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(err => console.log('Service worker registration failed:', err))); }
+</script>
+</body></html>
