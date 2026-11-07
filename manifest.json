@@ -1,17 +1,12 @@
-{
-  "id": "./",
-  "name": "EduCode — Learn. Build. Think.",
-  "short_name": "EduCode",
-  "description": "Learn algorithms and programming step by step.",
-  "lang": "ar",
-  "start_url": "./index.html",
-  "scope": "./",
-  "display": "standalone",
-  "orientation": "any",
-  "background_color": "#100d16",
-  "theme_color": "#100d16",
-  "icons": [
-    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
-  ]
-}
+"icons": [
+  {
+    "src": "./icon-192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  },
+  {
+    "src": "./icon-512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }
+]
