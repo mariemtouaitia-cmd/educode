@@ -3,11 +3,22 @@
   "name": "EduCode",
   "short_name": "EduCode",
   "description": "Learn Algorithms. Build Your Logic.",
+  "lang": "en",
+  "dir": "ltr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
   "background_color": "#0D0D12",
   "theme_color": "#7B2CFF",
+  "categories": [
+    "education",
+    "productivity",
+    "utilities"
+  ],
   "icons": [
     {
       "src": "./icon-192.png",
