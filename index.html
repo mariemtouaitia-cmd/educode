@@ -211,3 +211,1114 @@ document.body.classList.toggle("dark",theme==="dark");applyLang();openTrack("alg
 if ('serviceWorker' in navigator) { window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(err => console.log('Service worker registration failed:', err))); }
 </script>
 </body></html>
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100d16">
+<meta name="description" content="EduCode — Learn Algorithms. Build Your Logic.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- PWA -->
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" type="image/png" href="./icon-192.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+
+<title>EduCode | Learn. Build. Think.</title>
+
+<style>
+:root{
+--bg:#f6f3fa;
+--panel:#fff;
+--panel2:#eee8f5;
+--text:#21182d;
+--muted:#71687d;
+--purple:#7842bd;
+--purple2:#6334a2;
+--border:#ded4e9;
+--input:#faf8fc;
+--hero1:#eee5f8;
+--hero2:#dfc9f4;
+--heroText:#241532;
+--heroMuted:#59496a;
+--shadow:0 8px 28px #29143a0b;
+--success:#218653;
+--danger:#c43c55
+}
+
+body.dark{
+--bg:#100d16;
+--panel:#1b1624;
+--panel2:#282035;
+--text:#f5f0fa;
+--muted:#aaa0b8;
+--purple:#b78aef;
+--purple2:#7842bd;
+--border:#382c48;
+--input:#171220;
+--hero1:#21152f;
+--hero2:#392052;
+--heroText:#f5f0fa;
+--heroMuted:#ddd0ec;
+--shadow:none;
+--success:#65d49a;
+--danger:#e56b78
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:Arial,sans-serif;
+transition:.2s
+}
+
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+
+.topbar{
+height:66px;
+display:flex;
+align-items:center;
+gap:15px;
+padding:0 18px;
+background:var(--panel);
+border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:10
+}
+
+.menu{
+width:43px;
+height:43px;
+border:1px solid var(--border);
+border-radius:11px;
+background:var(--panel2);
+color:var(--text);
+font-size:22px
+}
+
+.brand{
+font-size:23px;
+font-weight:800
+}
+
+.brand span{color:var(--purple)}
+
+.wrap{
+max-width:1180px;
+margin:auto;
+padding:25px 18px
+}
+
+.page{display:none}
+.page.active{display:block}
+
+.hero{
+background:linear-gradient(125deg,var(--hero1),var(--hero2));
+color:var(--heroText);
+border:1px solid var(--border);
+border-radius:22px;
+padding:clamp(26px,5vw,45px);
+margin-bottom:28px
+}
+
+.hero h1{
+font-size:clamp(30px,5vw,46px);
+line-height:1.25
+}
+
+.hero h1 span{color:var(--purple)}
+
+.hero p{
+color:var(--heroMuted);
+line-height:1.9;
+max-width:720px
+}
+
+.eyebrow{
+color:var(--purple);
+font-weight:bold;
+letter-spacing:1.5px;
+font-size:12px
+}
+
+.primary,.secondary,.danger{
+border-radius:9px;
+padding:10px 15px;
+border:1px solid var(--border)
+}
+
+.primary{
+background:var(--purple2);
+color:white;
+border:0;
+font-weight:bold
+}
+
+.secondary{
+background:var(--panel2);
+color:var(--text)
+}
+
+.danger{
+background:transparent;
+color:var(--danger);
+border-color:var(--danger)
+}
+
+.hero .primary{
+margin-top:15px;
+background:var(--purple)
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px
+}
+
+.card,.panel,.lesson{
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:14px;
+padding:19px;
+margin-bottom:14px
+}
+
+.card p,.muted,.page-head p{
+color:var(--muted);
+line-height:1.75
+}
+
+.card .emoji{font-size:27px}
+.card h3{margin:10px 0}
+.page-head{margin-bottom:22px}
+.page-head h1{margin-bottom:8px}
+.section-title{margin:28px 0 15px}
+
+.sidebar{
+position:fixed;
+z-index:22;
+top:0;
+bottom:0;
+right:0;
+width:285px;
+max-width:86vw;
+background:var(--panel);
+border-left:1px solid var(--border);
+padding:20px;
+transform:translateX(110%);
+transition:.25s;
+overflow:auto
+}
+
+.sidebar.open{transform:translateX(0)}
+
+.overlay{
+display:none;
+position:fixed;
+inset:0;
+background:#0009;
+z-index:21
+}
+
+.overlay.show{display:block}
+
+.sidehead{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:24px
+}
+
+.sideitem{
+display:flex;
+gap:12px;
+width:100%;
+padding:12px;
+margin:4px 0;
+border:0;
+border-radius:9px;
+background:transparent;
+color:var(--text);
+text-align:right
+}
+
+.sideitem:hover,.sideitem.sel{
+background:var(--panel2);
+color:var(--purple)
+}
+
+.navlabel{
+font-size:11px;
+color:var(--muted);
+margin:20px 8px 8px;
+letter-spacing:1px
+}
+
+.tabs{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin:15px 0
+}
+
+.tab{
+padding:10px 14px;
+border-radius:9px;
+border:1px solid var(--border);
+background:var(--panel);
+color:var(--text)
+}
+
+.tab.active{
+background:var(--purple2);
+color:#fff
+}
+
+.lesson{cursor:pointer}
+.lesson:hover{border-color:var(--purple)}
+.lesson small{color:var(--muted)}
+.lesson h3{margin:8px 0}
+.lesson p{color:var(--muted);line-height:1.7}
+
+.detail h1{margin:7px 0 14px}
+.detail h2{font-size:19px;margin:24px 0 10px}
+.detail p,.detail li{line-height:1.9}
+.detail ul{padding-right:22px}
+
+.concept{
+background:var(--panel2);
+border:1px solid var(--border);
+border-radius:12px;
+padding:16px;
+margin:14px 0
+}
+
+.concept-title{
+font-weight:bold;
+color:var(--purple);
+margin-bottom:10px
+}
+
+.diagram{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+flex-wrap:wrap;
+padding:14px
+}
+
+.node{
+background:var(--panel);
+border:1px solid var(--purple);
+border-radius:9px;
+padding:12px;
+text-align:center;
+min-width:75px
+}
+
+.arrow{
+color:var(--purple);
+font-size:22px
+}
+
+.code{
+direction:ltr;
+text-align:left;
+white-space:pre-wrap;
+background:#15111d;
+color:#eee2ff;
+border-radius:10px;
+padding:15px;
+overflow:auto;
+font:14px/1.7 monospace
+}
+
+.video{
+display:inline-flex;
+align-items:center;
+gap:8px;
+background:#fff0f0;
+color:#b32635;
+border:1px solid #efc3c7;
+padding:11px 14px;
+border-radius:9px;
+text-decoration:none;
+font-weight:bold
+}
+
+.dark .video{
+background:#351b25;
+color:#ffb4be;
+border-color:#63303e
+}
+
+.field{margin:13px 0}
+
+.field label{
+display:block;
+margin-bottom:7px;
+font-weight:bold
+}
+
+.field input,.field textarea{
+width:100%;
+padding:12px;
+border-radius:9px;
+border:1px solid var(--border);
+background:var(--input);
+color:var(--text)
+}
+
+.editor{
+width:100%;
+min-height:280px;
+background:#15111d;
+color:#eee2ff;
+direction:ltr;
+text-align:left;
+padding:15px;
+border-radius:10px;
+border:1px solid var(--border);
+font:14px/1.7 monospace
+}
+
+.file{
+display:flex;
+justify-content:space-between;
+gap:10px;
+flex-wrap:wrap;
+background:var(--panel2);
+padding:12px;
+border-radius:9px;
+margin:9px 0
+}
+
+.track{
+height:9px;
+background:var(--panel2);
+border-radius:10px;
+overflow:hidden;
+margin:12px 0
+}
+
+.fill{
+height:100%;
+background:var(--purple);
+width:0
+}
+
+.setting{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+flex-wrap:wrap
+}
+
+.avatar{
+width:65px;
+height:65px;
+border-radius:50%;
+display:grid;
+place-items:center;
+background:var(--panel2);
+color:var(--purple);
+font-size:27px
+}
+
+footer{
+text-align:center;
+color:var(--muted);
+border-top:1px solid var(--border);
+padding:25px;
+margin-top:35px
+}
+
+a{color:var(--purple)}
+
+@media(max-width:600px){
+.wrap{padding:18px 13px}
+.topbar{padding:0 13px}
+.hero{padding:25px 19px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <button class="menu" onclick="toggleSidebar()">☰</button>
+  <div class="brand">Edu<span>Code</span></div>
+</header>
+
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidehead">
+    <div class="brand">Edu<span>Code</span></div>
+    <button class="secondary" onclick="toggleSidebar()">✕</button>
+  </div>
+
+  <div class="navlabel">MENU</div>
+  <button class="sideitem sel" onclick="go('home')">⌂ <span data-ar="الرئيسية" data-en="Home">الرئيسية</span></button>
+  <button class="sideitem" onclick="go('courses')">▤ <span data-ar="المقررات" data-en="Courses">المقررات</span></button>
+  <button class="sideitem" onclick="go('lab')">⌨ <span data-ar="مختبر البرمجة" data-en="Code Lab">مختبر البرمجة</span></button>
+  <button class="sideitem" onclick="go('files')">▣ <span data-ar="ملفاتي" data-en="My Files">ملفاتي</span></button>
+  <button class="sideitem" onclick="go('progress')">◴ <span data-ar="تقدمي" data-en="My Progress">تقدمي</span></button>
+
+  <div class="navlabel">PERSONAL</div>
+  <button class="sideitem" onclick="go('profile')">♙ <span data-ar="ملفي الشخصي" data-en="Profile">ملفي الشخصي</span></button>
+  <button class="sideitem" onclick="go('settings')">⚙ <span data-ar="الإعدادات" data-en="Settings">الإعدادات</span></button>
+  <button class="sideitem" onclick="go('about')">ⓘ <span data-ar="حول التطبيق" data-en="About">حول التطبيق</span></button>
+</aside>
+
+<main class="wrap">
+
+<section class="page active" id="home">
+  <div class="hero">
+    <div class="eyebrow">WELCOME TO EDUCODE</div>
+    <h1 data-ar="تعلم البرمجة.<br>ابنِ <span>منطقك.</span>" data-en="Learn to Code.<br>Build Your <span>Logic.</span>">تعلم البرمجة.<br>ابنِ <span>منطقك.</span></h1>
+    <p data-ar="منصة تعليمية تساعدك على فهم الخوارزميات والبرمجة من الصفر، خطوة بخطوة." data-en="An educational platform that helps you understand algorithms and programming from scratch, step by step.">منصة تعليمية تساعدك على فهم الخوارزميات والبرمجة من الصفر، خطوة بخطوة.</p>
+    <button class="primary" onclick="go('courses')" data-ar="ابدأ التعلم ←" data-en="Start Learning →">ابدأ التعلم ←</button>
+  </div>
+
+  <h2 class="section-title" data-ar="مسارات التعلم" data-en="Learning Paths">مسارات التعلم</h2>
+  <div class="grid" id="homeCourses"></div>
+
+  <h2 class="section-title" data-ar="إحصائياتك" data-en="Your Statistics">إحصائياتك</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="emoji">📚</div>
+      <h3 id="homeCompleted">0</h3>
+      <p data-ar="دروس مكتملة" data-en="Completed Lessons">دروس مكتملة</p>
+    </div>
+    <div class="card">
+      <div class="emoji">🎯</div>
+      <h3 id="homePercent">0%</h3>
+      <p data-ar="نسبة التقدم" data-en="Overall Progress">نسبة التقدم</p>
+    </div>
+    <div class="card">
+      <div class="emoji">💾</div>
+      <h3 id="homeFiles">0</h3>
+      <p data-ar="ملفات محفوظة" data-en="Saved Files">ملفات محفوظة</p>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="courses">
+  <div class="page-head">
+    <div class="eyebrow">YOUR LEARNING JOURNEY</div>
+    <h1 data-ar="المقررات التعليمية" data-en="Learning Courses">المقررات التعليمية</h1>
+    <p data-ar="اختر المسار الذي تريد تعلمه." data-en="Choose the learning path you want to explore.">اختر المسار الذي تريد تعلمه.</p>
+  </div>
+  <div class="grid" id="courseList"></div>
+  <div id="trackContent"></div>
+</section>
+
+<section class="page" id="lab">
+  <div class="page-head">
+    <div class="eyebrow">PRACTICE AREA</div>
+    <h1>Code Lab</h1>
+    <p data-ar="اكتب واحفظ أكوادك البرمجية. هذا المحرر لا يشغّل أو يترجم الأكواد." data-en="Write and save your code. This editor does not compile or execute programs.">اكتب واحفظ أكوادك البرمجية. هذا المحرر لا يشغّل أو يترجم الأكواد.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label data-ar="اسم الملف" data-en="File name">اسم الملف</label>
+      <input id="codeFileName" placeholder="my-program.c">
+    </div>
+    <div class="field">
+      <label data-ar="لغة البرمجة" data-en="Programming language">لغة البرمجة</label>
+      <select id="codeLanguage">
+        <option value="c">C</option>
+        <option value="cpp">C++</option>
+        <option value="text">Text</option>
+      </select>
+    </div>
+    <textarea class="editor" id="codeEditor" spellcheck="false" placeholder="// Write your code here..."></textarea>
+    <div class="tabs">
+      <button class="primary" onclick="saveCode()" data-ar="حفظ الملف" data-en="Save File">حفظ الملف</button>
+      <button class="secondary" onclick="clearEditor()" data-ar="مسح المحرر" data-en="Clear Editor">مسح المحرر</button>
+    </div>
+    <p class="muted" data-ar="تنبيه: EduCode يوفر محررًا نصيًا فقط، وليس بيئة تشغيل أو Compiler." data-en="Note: EduCode provides a text editor only, not a runtime or compiler.">تنبيه: EduCode يوفر محررًا نصيًا فقط، وليس بيئة تشغيل أو Compiler.</p>
+  </div>
+</section>
+
+<section class="page" id="files">
+  <div class="page-head">
+    <div class="eyebrow">YOUR WORKSPACE</div>
+    <h1 data-ar="ملفاتي" data-en="My Files">ملفاتي</h1>
+    <p data-ar="جميع ملفاتك المحفوظة على هذا الجهاز." data-en="All your saved files on this device.">جميع ملفاتك المحفوظة على هذا الجهاز.</p>
+  </div>
+  <div class="panel">
+    <div id="fileList"></div>
+  </div>
+</section>
+
+<section class="page" id="progress">
+  <div class="page-head">
+    <div class="eyebrow">YOUR ACHIEVEMENTS</div>
+    <h1 data-ar="تقدمي الدراسي" data-en="My Progress">تقدمي الدراسي</h1>
+    <p data-ar="تابع الدروس التي أكملتها." data-en="Track the lessons you have completed.">تابع الدروس التي أكملتها.</p>
+  </div>
+  <div class="panel">
+    <h2 data-ar="التقدم الإجمالي" data-en="Overall Progress">التقدم الإجمالي</h2>
+    <h1 id="progressPercent">0%</h1>
+    <div class="track"><div class="fill" id="progressFill"></div></div>
+    <p id="progressText" class="muted"></p>
+  </div>
+  <div id="progressCourses"></div>
+</section>
+
+<section class="page" id="profile">
+  <div class="page-head">
+    <div class="eyebrow">YOUR ACCOUNT</div>
+    <h1 data-ar="ملفي الشخصي" data-en="My Profile">ملفي الشخصي</h1>
+  </div>
+  <div class="panel">
+    <div class="avatar">👤</div>
+    <div class="field">
+      <label data-ar="الاسم" data-en="Name">الاسم</label>
+      <input id="pName" placeholder="Your name">
+    </div>
+    <div class="field">
+      <label data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+      <input id="pEmail" type="email" placeholder="example@email.com">
+    </div>
+    <div class="field">
+      <label data-ar="التخصص" data-en="Field of study">التخصص</label>
+      <input id="pField" placeholder="Computer Science">
+    </div>
+    <button class="primary" onclick="saveProfile()" data-ar="حفظ التغييرات" data-en="Save Changes">حفظ التغييرات</button>
+  </div>
+</section>
+
+<section class="page" id="settings">
+  <div class="page-head">
+    <div class="eyebrow">CUSTOMIZE YOUR EXPERIENCE</div>
+    <h1 data-ar="الإعدادات" data-en="Settings">الإعدادات</h1>
+  </div>
+
+  <div class="panel setting">
+    <div>
+      <h3 data-ar="المظهر" data-en="Appearance">المظهر</h3>
+      <p class="muted" data-ar="التبديل بين الوضع الفاتح والداكن." data-en="Switch between light and dark mode.">التبديل بين الوضع الفاتح والداكن.</p>
+    </div>
+    <button class="secondary" onclick="toggleTheme()" id="themeButton">🌙</button>
+  </div>
+
+  <div class="panel setting">
+    <div>
+      <h3 data-ar="اللغة" data-en="Language">اللغة</h3>
+      <p class="muted" data-ar="اختر لغة الواجهة." data-en="Choose the interface language.">اختر لغة الواجهة.</p>
+    </div>
+    <select id="languageSelect" onchange="changeLanguage(this.value)">
+      <option value="ar">العربية</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+
+  <div class="panel">
+    <h3 data-ar="إدارة البيانات" data-en="Data Management">إدارة البيانات</h3>
+    <p class="muted" data-ar="يمكنك تنزيل نسخة من بياناتك أو إعادة ضبطها." data-en="You can export your data or reset it.">يمكنك تنزيل نسخة من بياناتك أو إعادة ضبطها.</p>
+    <div class="tabs">
+      <button class="secondary" onclick="exportData()" data-ar="تصدير البيانات" data-en="Export Data">تصدير البيانات</button>
+      <button class="danger" onclick="resetProgress()" data-ar="إعادة ضبط التقدم" data-en="Reset Progress">إعادة ضبط التقدم</button>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="about">
+  <div class="page-head">
+    <div class="eyebrow">ABOUT EDUCODE</div>
+    <h1>Learn Algorithms. Build Your Logic.</h1>
+  </div>
+  <div class="panel">
+    <h2>EduCode</h2>
+    <p data-ar="منصة تعليمية تهدف إلى تبسيط الخوارزميات والبرمجة لطلاب الجامعات والمبتدئين." data-en="An educational platform designed to simplify algorithms and programming for university students and beginners.">منصة تعليمية تهدف إلى تبسيط الخوارزميات والبرمجة لطلاب الجامعات والمبتدئين.</p>
+    <h3 data-ar="ماذا تقدم المنصة؟" data-en="What does the platform offer?">ماذا تقدم المنصة؟</h3>
+    <ul>
+      <li>Algorithmique et Structures de Données</li>
+      <li>Structure Machine</li>
+      <li>C Programming</li>
+      <li>Code Lab and personal files</li>
+      <li>Learning progress tracking</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="brand">Edu<span>Code</span></div>
+  <p>Learn Algorithms. Build Your Logic.</p>
+  <small>Educational project · 2026</small>
+</footer>
+
+<script>
+let lang = localStorage.getItem("eduLang") || "ar";
+let currentTrack = "algorithm";
+let currentLesson = 0;
+
+let completed = JSON.parse(localStorage.getItem("eduCompleted") || "[]");
+let files = JSON.parse(localStorage.getItem("eduFiles") || "[]");
+let profile = JSON.parse(localStorage.getItem("eduProfile") || "{}");
+
+function saveStorage() {
+  localStorage.setItem("eduCompleted", JSON.stringify(completed));
+  localStorage.setItem("eduFiles", JSON.stringify(files));
+  localStorage.setItem("eduProfile", JSON.stringify(profile));
+}
+
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("show");
+}
+
+function go(page) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  const target = document.getElementById(page);
+  if (target) target.classList.add("active");
+
+  document.querySelectorAll(".sideitem").forEach(b => b.classList.remove("sel"));
+  const buttons = document.querySelectorAll(".sideitem");
+  buttons.forEach(b => {
+    if (b.getAttribute("onclick") === `go('${page}')`) b.classList.add("sel");
+  });
+
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+
+  if (page === "files") renderFiles();
+  if (page === "progress") renderProgress();
+  if (page === "profile") loadProfile();
+  if (page === "home") renderHome();
+  if (page === "courses") renderCourses();
+}
+
+function applyLang() {
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+
+  document.querySelectorAll("[data-ar][data-en]").forEach(el => {
+    el.innerHTML = el.getAttribute("data-" + lang);
+  });
+
+  document.getElementById("languageSelect").value = lang;
+  localStorage.setItem("eduLang", lang);
+}
+
+function changeLanguage(value) {
+  lang = value;
+  applyLang();
+  renderHome();
+  renderCourses();
+}
+
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  const dark = document.body.classList.contains("dark");
+  localStorage.setItem("eduTheme", dark ? "dark" : "light");
+  document.getElementById("themeButton").textContent = dark ? "☀️" : "🌙";
+}
+
+function getAllLessons() {
+  return Object.entries(courses).flatMap(([track, data]) =>
+    data.lessons.map((lesson, index) => ({
+      track,
+      index,
+      lesson
+    }))
+  );
+}
+
+function isDone(track, index) {
+  return completed.includes(track + "-" + index);
+}
+
+function renderHome() {
+  const container = document.getElementById("homeCourses");
+  container.innerHTML = "";
+
+  Object.entries(courses).forEach(([key, course]) => {
+    const done = course.lessons.filter((_, i) => isDone(key, i)).length;
+    const percent = Math.round(done / course.lessons.length * 100);
+
+    container.innerHTML += `
+      <div class="card">
+        <div class="emoji">${course.icon}</div>
+        <h3>${course.title}</h3>
+        <p>${course.subtitle}</p>
+        <div class="track"><div class="fill" style="width:${percent}%"></div></div>
+        <small>${done}/${course.lessons.length} lessons · ${percent}%</small>
+        <p><button class="primary" onclick="openTrack('${key}')">
+          ${lang === "ar" ? "استكشف المسار" : "Explore Course"}
+        </button></p>
+      </div>
+    `;
+  });
+
+  updateStats();
+}
+
+function renderCourses() {
+  const container = document.getElementById("courseList");
+  container.innerHTML = "";
+
+  Object.entries(courses).forEach(([key, course]) => {
+    container.innerHTML += `
+      <div class="card">
+        <div class="emoji">${course.icon}</div>
+        <h3>${course.title}</h3>
+        <p>${course.subtitle}</p>
+        <button class="primary" onclick="openTrack('${key}')">
+          ${lang === "ar" ? "عرض الدروس" : "View Lessons"}
+        </button>
+      </div>
+    `;
+  });
+}
+
+function openTrack(key) {
+  if (!courses[key]) return;
+
+  currentTrack = key;
+  go("courses");
+
+  const course = courses[key];
+  const done = course.lessons.filter((_, i) => isDone(key, i)).length;
+
+  document.getElementById("trackContent").innerHTML = `
+    <div class="panel">
+      <button class="secondary" onclick="document.getElementById('trackContent').innerHTML=''">
+        ← ${lang === "ar" ? "رجوع" : "Back"}
+      </button>
+      <h2>${course.icon} ${course.title}</h2>
+      <p class="muted">${course.subtitle}</p>
+      <div class="track">
+        <div class="fill" style="width:${done / course.lessons.length * 100}%"></div>
+      </div>
+      <p>${done} / ${course.lessons.length} ${lang === "ar" ? "دروس مكتملة" : "lessons completed"}</p>
+    </div>
+    <div id="lessonList"></div>
+  `;
+
+  const list = document.getElementById("lessonList");
+
+  course.lessons.forEach((lesson, index) => {
+    const done = isDone(key, index);
+
+    list.innerHTML += `
+      <div class="lesson" onclick="openLesson('${key}',${index})">
+        <small>${lang === "ar" ? "الدرس" : "LESSON"} ${index + 1} · ${lesson.duration}</small>
+        <h3>${done ? "✅ " : "📘 "}${lesson.title}</h3>
+        <p>${lesson.description}</p>
+      </div>
+    `;
+  });
+}
+
+function openLesson(track, index) {
+  currentTrack = track;
+  currentLesson = index;
+
+  const lesson = courses[track].lessons[index];
+  const done = isDone(track, index);
+
+  const diagram = (lesson.diagram || "")
+    .split("→")
+    .map(x => `<div class="node">${x.trim()}</div>`)
+    .join('<div class="arrow">→</div>');
+
+  document.getElementById("trackContent").innerHTML = `
+    <div class="panel detail">
+      <button class="secondary" onclick="openTrack('${track}')">
+        ← ${lang === "ar" ? "العودة إلى الدروس" : "Back to Lessons"}
+      </button>
+
+      <p class="eyebrow">${courses[track].title}</p>
+      <h1>${lesson.title}</h1>
+      <p class="muted">${lesson.duration} · ${lesson.level}</p>
+
+      <h2>${lang === "ar" ? "أهداف الدرس" : "Learning Objectives"}</h2>
+      <ul>${lesson.objectives.map(x => `<li>${x}</li>`).join("")}</ul>
+
+      <h2>${lang === "ar" ? "الشرح" : "Explanation"}</h2>
+      <div class="concept">
+        ${lesson.explanation.replace(/\n/g, "<br>")}
+      </div>
+
+      <h2>${lang === "ar" ? "تمثيل بصري" : "Visual Representation"}</h2>
+      <div class="concept">
+        <div class="diagram">${diagram}</div>
+      </div>
+
+      <h2>${lang === "ar" ? "مثال تطبيقي" : "Practical Example"}</h2>
+      <pre class="code">${escapeHTML(lesson.example)}</pre>
+
+      <h2>${lang === "ar" ? "تمارين" : "Exercises"}</h2>
+      <div class="concept">${lesson.exercise.replace(/\n/g, "<br>")}</div>
+
+      <details class="concept">
+        <summary>${lang === "ar" ? "عرض الحل المقترح" : "Show Suggested Solution"}</summary>
+        <pre class="code">${escapeHTML(lesson.solution)}</pre>
+      </details>
+
+      <h2>${lang === "ar" ? "فيديو للتعلم" : "Learning Video"}</h2>
+      <a class="video" href="${lesson.video}" target="_blank" rel="noopener">
+        ▶ ${lang === "ar" ? "ابحث عن شرح الدرس على YouTube" : "Find a lesson explanation on YouTube"}
+      </a>
+
+      <div class="tabs">
+        <button class="${done ? "secondary" : "primary"}" onclick="markDone('${track}',${index})">
+          ${done
+            ? (lang === "ar" ? "إلغاء إكمال الدرس" : "Mark as Incomplete")
+            : (lang === "ar" ? "✓ إكمال الدرس" : "✓ Complete Lesson")}
+        </button>
+        ${index > 0 ? `<button class="secondary" onclick="openLesson('${track}',${index - 1})">← ${lang === "ar" ? "السابق" : "Previous"}</button>` : ""}
+        ${index < courses[track].lessons.length - 1 ? `<button class="secondary" onclick="openLesson('${track}',${index + 1})">${lang === "ar" ? "التالي" : "Next"} →</button>` : ""}
+      </div>
+    </div>
+  `;
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+function markDone(track, index) {
+  const id = track + "-" + index;
+
+  if (completed.includes(id)) {
+    completed = completed.filter(x => x !== id);
+  } else {
+    completed.push(id);
+  }
+
+  saveStorage();
+  openLesson(track, index);
+  updateStats();
+}
+
+function updateStats() {
+  const all = getAllLessons();
+  const total = all.length;
+  const done = completed.length;
+  const percent = total ? Math.round(done / total * 100) : 0;
+
+  document.getElementById("homeCompleted").textContent = done;
+  document.getElementById("homePercent").textContent = percent + "%";
+  document.getElementById("homeFiles").textContent = files.length;
+
+  document.getElementById("progressPercent").textContent = percent + "%";
+  document.getElementById("progressFill").style.width = percent + "%";
+  document.getElementById("progressText").textContent =
+    done + " / " + total + " lessons completed";
+}
+
+function renderProgress() {
+  const container = document.getElementById("progressCourses");
+  container.innerHTML = "";
+
+  Object.entries(courses).forEach(([key, course]) => {
+    const done = course.lessons.filter((_, i) => isDone(key, i)).length;
+    const percent = Math.round(done / course.lessons.length * 100);
+
+    container.innerHTML += `
+      <div class="panel">
+        <h3>${course.icon} ${course.title}</h3>
+        <div class="track"><div class="fill" style="width:${percent}%"></div></div>
+        <p class="muted">${done} / ${course.lessons.length} · ${percent}%</p>
+      </div>
+    `;
+  });
+
+  updateStats();
+}
+
+function saveCode() {
+  const name = document.getElementById("codeFileName").value.trim();
+  const code = document.getElementById("codeEditor").value;
+  const language = document.getElementById("codeLanguage").value;
+
+  if (!name) {
+    alert(lang === "ar" ? "أدخلي اسم الملف أولاً." : "Enter a file name first.");
+    return;
+  }
+
+  if (!code.trim()) {
+    alert(lang === "ar" ? "المحرر فارغ." : "The editor is empty.");
+    return;
+  }
+
+  files.push({
+    id: Date.now(),
+    name,
+    code,
+    language,
+    date: new Date().toLocaleString()
+  });
+
+  saveStorage();
+  updateStats();
+
+  alert(lang === "ar" ? "تم حفظ الملف." : "File saved.");
+}
+
+function clearEditor() {
+  if (confirm(lang === "ar" ? "هل تريد مسح المحرر؟" : "Clear the editor?")) {
+    document.getElementById("codeEditor").value = "";
+  }
+}
+
+function renderFiles() {
+  const container = document.getElementById("fileList");
+
+  if (!files.length) {
+    container.innerHTML = `<p class="muted">${lang === "ar" ? "لا توجد ملفات محفوظة بعد." : "No saved files yet."}</p>`;
+    return;
+  }
+
+  container.innerHTML = files.map(file => `
+    <div class="file">
+      <div>
+        <strong>${escapeHTML(file.name)}</strong>
+        <br><small>${escapeHTML(file.language)} · ${escapeHTML(file.date)}</small>
+      </div>
+      <div class="tabs">
+        <button class="secondary" onclick="editFile(${file.id})">${lang === "ar" ? "فتح" : "Open"}</button>
+        <button class="secondary" onclick="downloadFile(${file.id})">${lang === "ar" ? "تنزيل" : "Download"}</button>
+        <button class="danger" onclick="deleteFile(${file.id})">${lang === "ar" ? "حذف" : "Delete"}</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function editFile(id) {
+  const file = files.find(x => x.id === id);
+  if (!file) return;
+
+  document.getElementById("codeFileName").value = file.name;
+  document.getElementById("codeEditor").value = file.code;
+  document.getElementById("codeLanguage").value = file.language;
+  go("lab");
+}
+
+function deleteFile(id) {
+  if (!confirm(lang === "ar" ? "هل تريد حذف هذا الملف؟" : "Delete this file?")) return;
+
+  files = files.filter(x => x.id !== id);
+  saveStorage();
+  renderFiles();
+  updateStats();
+}
+
+function downloadFile(id) {
+  const file = files.find(x => x.id === id);
+  if (!file) return;
+
+  const blob = new Blob([file.code], {type: "text/plain"});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = file.name;
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
+
+function saveProfile() {
+  profile = {
+    name: document.getElementById("pName").value,
+    email: document.getElementById("pEmail").value,
+    field: document.getElementById("pField").value
+  };
+
+  saveStorage();
+  alert(lang === "ar" ? "تم حفظ الملف الشخصي." : "Profile saved.");
+}
+
+function loadProfile() {
+  document.getElementById("pName").value = profile.name || "";
+  document.getElementById("pEmail").value = profile.email || "";
+  document.getElementById("pField").value = profile.field || "";
+}
+
+function exportData() {
+  const data = {
+    completed,
+    files,
+    profile,
+    language: lang
+  };
+
+  const blob = new Blob(
+    [JSON.stringify(data, null, 2)],
+    {type: "application/json"}
+  );
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "educode-backup.json";
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
+
+function resetProgress() {
+  if (!confirm(lang === "ar"
+    ? "هل أنت متأكد من إعادة ضبط جميع الدروس المكتملة؟"
+    : "Are you sure you want to reset all completed lessons?")) return;
+
+  completed = [];
+  saveStorage();
+  renderProgress();
+  renderHome();
+}
+
+function initialize() {
+  const savedTheme = localStorage.getItem("eduTheme");
+
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    document.getElementById("themeButton").textContent = "☀️";
+  }
+
+  applyLang();
+  renderHome();
+  renderCourses();
+  updateStats();
+  loadProfile();
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw.js")
+        .catch(error => console.log("Service Worker:", error));
+    });
+  }
+}
+
+initialize();
+</script>
+
+</body>
+</html>
